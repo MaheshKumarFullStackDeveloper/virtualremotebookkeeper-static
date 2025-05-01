@@ -538,6 +538,7 @@ ul.NavigationMenuList > li:last-child{
 	display: inline-block;
   }
 
-  a,button{
+  a:hover,button:hover{
 	cursor: pointer !important;
   }
+ 
