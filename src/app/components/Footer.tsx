@@ -1,8 +1,19 @@
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
+import { store } from "../store/store";
+
+interface footerMenus {
+  name: string;
+  url: string;
+}
+
 
 function Footer() {
+
+      const footerMenu = store.getState().data.footerMenu;
+      const footerText = store.getState().data.footerText;
+  
   return (
     <>
       {" "}
@@ -25,45 +36,26 @@ function Footer() {
               </Link>
             </div>
             <div>
-              <p>
-                With Our Virtual Remote Bookkeeper Experts, you can trust that
-                each service is delivered with professionalism, accuracy, and a
-                focus on your unique business needs.
-              </p>
+              <p>{footerText}</p>
             </div>
           </div>
           <div className="flex flex-col  flex-1 items-center justify-center  text-white  px-4  mb-[30px]">
             <h4 className="max-w-[300px] w-[100%] mt-0 mb-[30px] pr-0 text-[1.777rem] leading-snug font-medium capitalize font-stretch-condensed font-sans clear-both m-auto text-left text-white ">
-              {" "}
               <span className="text-[#fe6b01] text-[30px] pr-[10px] "> -</span>Quick Links
             </h4>
             <div className=" float-none m-auto flex flex-col ">
               <ul className="w-auto">
-                <li>
-                  <Link href="quickbooks-bookkeeping-services"
-                    className="block px-[15px] py-2 font-medium text-white uppercase text-[0.875rem] tracking-[0.188rem] hover:text-[#2bbdcc] transform transition duration-300" >QuickBooks Bookkeeping </Link>
+             
+                {footerMenu && footerMenu.map((item: footerMenus, index: number) => (
+                  <li key={index}>
+
+                  <Link href={item.url || '#'}
+                    className="block px-[15px] py-2 font-medium text-white uppercase text-[0.875rem] tracking-[0.188rem] hover:text-[#2bbdcc] transform transition duration-300" >{item.name} </Link>
                 </li>
-                <li>
-                  <Link href="/zoho-bookkeeping/"
-                    className="block px-[15px] py-2 font-medium text-white uppercase text-[0.875rem] tracking-[0.188rem] hover:text-[#2bbdcc] transform transition duration-300" >Zoho Bookkeeping</Link>
-                </li>
-                <li>
-                  <Link href="/accounting-services/"
-                    className="block px-[15px] py-2 font-medium text-white uppercase text-[0.875rem] tracking-[0.188rem] hover:text-[#2bbdcc] transform transition duration-300" >Accounting Services</Link>
-                </li>
-                <li>
-                  <Link href="/professionals-bookkeeping-services/"
-                    className="block px-[15px] py-2 font-medium text-white uppercase text-[0.875rem] tracking-[0.188rem] hover:text-[#2bbdcc] transform transition duration-300" >Professionals Bookkeeping</Link>
-                </li>
-                <li>
-                  <Link href="/xero-bookkeeping-services/"
-                    className="block px-[15px] py-2 font-medium text-white uppercase text-[0.875rem] tracking-[0.188rem] hover:text-[#2bbdcc] transform transition duration-300" >Xero Bookkeeping Services</Link>
-                </li>
-                <li>
-                  <Link href="/blogs/"
-                    className="block px-[15px] py-2 font-medium text-white uppercase text-[0.875rem] tracking-[0.188rem] hover:text-[#2bbdcc] transform transition duration-300" >blogs</Link>
-                </li>
+))}
+
                 
+              
 
               </ul>
             </div>

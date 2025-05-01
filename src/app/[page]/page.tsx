@@ -11,7 +11,7 @@ interface PageProps {
 
 import type { Metadata } from "next";
 
-
+ 
 
 export async function generateMetadata({ params}: PageProps): Promise<Metadata> {
    

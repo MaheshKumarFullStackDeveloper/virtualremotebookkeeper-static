@@ -15,9 +15,8 @@ import {
   selectError,
 } from "./store/slice/dataSlice";
 import { AppDispatch } from "./store/store";
-import { useEffect,useState } from "react";
+import { useEffect } from "react";
 import { ArrowRightIcon } from "lucide-react";
-import { usePathname, useRouter } from "next/navigation";
 
 interface Slide {
   title: string;

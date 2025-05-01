@@ -212,6 +212,12 @@ ul.NavigationMenuList > li:last-child{
 	}
 	
 }
+@media only screen and (min-width: 876) {
+	.NavigationMenuContent,.NavigationMenuViewport {
+	   width:500px  ;
+   }
+   
+}
 
 .NavigationMenuIndicator {
 	display: flex;
