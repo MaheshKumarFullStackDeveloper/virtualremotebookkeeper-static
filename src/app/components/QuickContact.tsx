@@ -63,7 +63,7 @@ function QuickContact() {
 
   return (
     <div>
-      <h6 className="font-stretch-condensed capitalize font-dm text-[1.777rem] mb-2 ">
+      <h6 className="font-stretch-condensed capitalize font-dm text-[1.777rem] mb-2 text-white text-left ">
         Quick Contact
       </h6>
 

@@ -182,5 +182,8 @@
   .singleBlogPage table td{
     @apply   leading-[1.66em] text-[#596475] text-[1rem]  text-left p-[.5em] border border-gray-400
   }
+  .pagesec1 ul{
+    @apply list-disc p-4
+  }
 }
 }

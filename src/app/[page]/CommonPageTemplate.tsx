@@ -77,10 +77,10 @@ export default function CommonPageTemplate( { url}: PageProps ) {
     sectionContect = parsedData?.sectionContect;
   }
 
-/*   let section1 = null;
+  let section1 = null;
   if (parsedData?.section1?.status) {
     section1 = parsedData?.section1;
-  } */
+  } 
   let section2 = null;
   if (parsedData?.section2?.status) {
     section2 = parsedData?.section2;
@@ -137,6 +137,30 @@ export default function CommonPageTemplate( { url}: PageProps ) {
              </>
            )}
 
+
+         {section1 !== null && section1.status === "true" && (
+             <>
+            
+               <div className="flex flex-col md:flex-row   bg-[#003a3a]  max-w-[1370px] text-center justify-between w-full m-auto p-6 ">
+               <div className="flex-1 p-2 mt-6">
+                 
+                 <h2 className="text-left mb-5" dangerouslySetInnerHTML={{ __html: section1?.title }}
+                />
+                 <div className="text-left text-white pagesec1"
+                  dangerouslySetInnerHTML={{ __html: section1?.description }}
+                />
+                </div>
+               <div className="flex-1 my-5 mt-0  w-full m-auto p-6 pt-[60px]">
+                 
+                 <div className=" bg-black text-white border-white border-solid border-7 px-7 py-8 p-2 text-left ">
+                   <QuickContact />
+                 </div>
+                
+                 
+                 </div>
+               </div>
+             </>
+           )}
            {section2 !== null &&  section2.status === "true" && (
                      <>
                        <div className="flex flex-col md:flex-row my-1 md:my-5  max-w-[1370px] w-full m-auto p-1 md:p-5">
@@ -170,7 +194,9 @@ export default function CommonPageTemplate( { url}: PageProps ) {
                                        {" "}
                                        {slide.title}
                                      </h4>
-                                     <p className=" font-dm"> {slide.description}</p>
+                                     <div className=" font-dm "
+                  dangerouslySetInnerHTML={{ __html: slide.description}}
+                />
                                      <Link href={slide.link || '#'}>
                                        {" "}
                                        <Button
