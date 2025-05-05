@@ -194,7 +194,7 @@ export default function CommonPageTemplate( { url}: PageProps ) {
                                        {" "}
                                        {slide.title}
                                      </h4>
-                                     <div className=" font-dm "
+                                     <div className=" font-dm text-white"
                   dangerouslySetInnerHTML={{ __html: slide.description}}
                 />
                                      <Link href={slide.link || '#'}>
