@@ -12,11 +12,11 @@ import {
   fetchData,
   selectData,
   selectStatus,
-  selectError,
 } from "./store/slice/dataSlice";
 import { AppDispatch } from "./store/store";
 import { useEffect } from "react";
 import { ArrowRightIcon } from "lucide-react";
+import MainLoader from "@/lib/MainLoader";
 
 interface Slide {
   title: string;
@@ -45,7 +45,7 @@ export default function Home() {
   const dispatch = useDispatch<AppDispatch>();
   const pageData = useSelector(selectData);
   const status = useSelector(selectStatus);
-  const error = useSelector(selectError);
+
   const pageSlug = "home";
 
   
@@ -64,7 +64,7 @@ export default function Home() {
   }, [dispatch, status, pageData,pageSlug]);
 
   if (pageData === null) { 
-    return (<h1 className="text-black">Loading...</h1>); 
+    return (<MainLoader/>); 
 
   }else if (pageData.content=== 'Page not Found') { 
     return (<h1 className="text-black">Page not Found</h1>); 
@@ -130,8 +130,7 @@ export default function Home() {
             </span>
             <span
               className={`text-white capitalize tracking-normal text-left outline-none font-medium ${georgia.className} text-[40px] sm:text-[40px] md:text-[55px] lg:text-[75px] leading-[55px] sm:leading-[55px] md:leading-[70px] lg:leading-[92px]  `}
-            >
-              We'll Handle
+            >{`We'll Handle`}
             </span>
             <br />
             <span

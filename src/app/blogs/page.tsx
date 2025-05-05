@@ -7,6 +7,8 @@ import Pagination from '../components/Pagination';
 import { useSearchParams } from 'next/navigation';
 import { RootState } from '../store/store';
 import { useSelector } from 'react-redux';
+
+const baseUrl = process.env.NEXT_PUBLIC_BLOG_API; // Load from .env
 //import { toggleLoginDialog } from '../store/slice/userSlice';
 
 // Define the Post interface
@@ -28,7 +30,9 @@ const fetchPosts = async (
   limit: number,
   category?: string // Optional parameter for category
 ): Promise<PaginatedResponse> => {
-  const response = await axios.get<Post[]>('http://localhost:5000/blogs', {
+
+
+  const response = await axios.get<Post[]>(`${baseUrl}/blogs`, {
     params: {
       _page: page,
       _limit: limit,
@@ -59,7 +63,7 @@ const Page: React.FC = () => {
     };
 
     loadPosts();
-  }, [page]);
+  }, [page,category]);
 
   const handlePageChange = (page: number) => {
     setPage(page);

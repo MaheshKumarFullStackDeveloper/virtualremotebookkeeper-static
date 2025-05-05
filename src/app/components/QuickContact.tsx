@@ -40,7 +40,7 @@ function QuickContact() {
         body: JSON.stringify(data),
       });
       const result = await response.json();
-      //  console.log(result);
+        console.log(result);
   
       setquickContactLoading(false);
   
@@ -67,7 +67,7 @@ function QuickContact() {
         Quick Contact
       </h6>
 
-      <form className="space-y-4"   onSubmit={handleQuickContactSubmit(onSubmit)}>
+      <form className="space-y-4 text-black "   onSubmit={handleQuickContactSubmit(onSubmit)}>
         <div className=" items-left ">
           <Input
             {...quickContactForm("name", {

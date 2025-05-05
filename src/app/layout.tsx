@@ -7,7 +7,7 @@ import Footer from "./components/Footer";
 import LayoutWrapper from "./LayoutWrapper";
 import { Roboto } from 'next/font/google';
 import { DM_Sans } from 'next/font/google';
-import { ToastContainer, toast } from 'react-toastify';
+import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 
@@ -33,6 +33,8 @@ const roboto = Roboto({
 
 import "./globals.css";
 import "./style.css";
+import { Suspense } from "react";
+import MainLoader from "@/lib/MainLoader";
 
 
 export const metadata: Metadata = {
@@ -46,6 +48,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
+    <Suspense fallback={<MainLoader/>}>
+
     <html lang="en" suppressHydrationWarning>
       <body
         className={`${poppins.className} ${roboto.className} ${dmSans.className}`}
@@ -59,5 +63,7 @@ export default function RootLayout({
 
       </body>
     </html>
+    </Suspense>
+
   );
 }

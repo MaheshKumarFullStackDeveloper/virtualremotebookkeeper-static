@@ -1,7 +1,7 @@
-export default function transform(css) {
+import { Root } from 'postcss';
+
+export default function transform(css: Root) {
     css.walkRules((rule) => {
-      // Custom transformation logic
-      console.log(rule.selector);
+        console.log(rule.selector);
     });
-  }
-  
+}

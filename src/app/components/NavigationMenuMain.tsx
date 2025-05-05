@@ -1,14 +1,12 @@
 "use client"
-import React, { forwardRef } from 'react';
+import React from 'react';
 import * as NavigationMenu from '@radix-ui/react-navigation-menu';
 //import classNames from "classnames";
 import { CaretDownIcon } from "@radix-ui/react-icons";
 import { cn } from "@/lib/utils"
 import { usePathname } from 'next/navigation';
 import Link from 'next/link';
-import { useSelector, useDispatch } from "react-redux";
-import { AppDispatch } from ".././store/store";
-import { useEffect } from "react";
+import { useSelector } from "react-redux";
 import {selectHeaderMenu} from ".././store/slice/dataSlice";
 
 interface NavigationMenuMainProps{
@@ -89,23 +87,33 @@ const NavigationMenuMain  : React.FC<NavigationMenuMainProps>=  ({device}) => {
 	);
 };
 
+interface ListItemProps {
+	href: string;
+	title: string;
+	children?: React.ReactNode;
+  }
 
-const ListItem = React.forwardRef(
-	({ className, children, title, ...props }, forwardedRef) => (
-		<li>
-			<NavigationMenu.Link asChild>
-				<Link
-					className={cn("ListItemLink", className)}
-					{...props}
-					ref={forwardedRef}
-				>
-					<div className="ListItemHeading">{title}</div>
-					<p className="ListItemText">{children}</p>
-				</Link>
-			</NavigationMenu.Link>
-		</li>
+  const ListItem = React.forwardRef<HTMLAnchorElement, ListItemProps>(
+	({  children, title, href, ...props }, forwardedRef) => (
+	  <li>
+		<NavigationMenu.Link asChild>
+		  <Link
+			className={cn("ListItemLink")}
+			href={href}
+			{...props}
+			ref={forwardedRef}
+		  >
+			<div className="ListItemHeading">{title}</div>
+			<p className="ListItemText">{children}</p>
+		  </Link>
+		</NavigationMenu.Link>
+	  </li>
 	),
-);
+  );
+  
+  ListItem.displayName = "ListItem";
+  
+
 
 
 export default NavigationMenuMain;

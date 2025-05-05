@@ -1,7 +1,7 @@
 import { createSlice,PayloadAction } from '@reduxjs/toolkit'
 
 interface UserState{
-    user: any | null;
+    user: unknown | null;
     isEmailVerified:boolean;
     isLoginDialogOpen:boolean;
     isLoggedIn:boolean;
@@ -19,9 +19,10 @@ const userSlice = createSlice({
     name:'user',
     initialState,
     reducers:{
-        setUser:(state,action:PayloadAction<any>)=>{
+        setUser:(state,action:PayloadAction<unknown>)=>{
             state.user=action.payload;
         },
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
         setEmailVerified:(state,action:PayloadAction<any>)=>{
             state.isEmailVerified=action.payload;
         },

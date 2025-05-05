@@ -1,6 +1,9 @@
 "use client";
 import Image from "next/image";
 import axios from "axios";
+
+const baseUrl = process.env.NEXT_PUBLIC_BLOG_API; // Load from .env
+
 interface Post {
   id: number;
   title: string;
@@ -15,10 +18,10 @@ interface PaginatedResponse {
 const fetchPosts = async (
   limit?: number // Optional parameter for category
 ): Promise<PaginatedResponse> => {
-  const response = await axios.get<Post[]>("http://localhost:5000/blogs", {
+  const response = await axios.get<Post[]>(`${baseUrl}/blogs`, {
     params: {
       _page: 1,
-      _limit: 3,
+      _limit: limit,
     },
   });
 

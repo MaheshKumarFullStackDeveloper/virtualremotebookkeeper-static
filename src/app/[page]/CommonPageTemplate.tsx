@@ -1,6 +1,5 @@
 "use client";
 import Image from "next/image";
-import localFont from "next/font/local";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import QuickContact from "../components/QuickContact";
@@ -12,12 +11,12 @@ import {
   fetchData,
   selectData,
   selectStatus,
-  selectError,
 } from "../store/slice/dataSlice";
 import { AppDispatch } from "../store/store";
 import { useEffect } from "react";
 import { ArrowRightIcon } from "lucide-react";
 import { usePathname, useRouter } from "next/navigation";
+import MainLoader from "@/lib/MainLoader";
 
 interface Slide {
   title: string;
@@ -27,17 +26,14 @@ interface Slide {
   id: string;
 }
 interface PageProps {
-  params: {
-    value:string,
-    page:string,
-  };
+  url :string;
 }
 
-export default function CommonPageTemplate( { params}: PageProps ) {
+export default function CommonPageTemplate( { url}: PageProps ) {
   const router = useRouter();
 
-  const { page } = params;
- 
+  const  page  = url;
+  console.log("check page",url)
   if(page===""){
     console.log("redirect to home")
     void  router.push('/')
@@ -46,7 +42,6 @@ export default function CommonPageTemplate( { params}: PageProps ) {
   const dispatch = useDispatch<AppDispatch>();
   const pageData = useSelector(selectData);
   const status = useSelector(selectStatus);
-  const error = useSelector(selectError);
   const pathname = usePathname();
  
  
@@ -69,7 +64,7 @@ export default function CommonPageTemplate( { params}: PageProps ) {
 
   
   if (pageData === null) { 
-    return (<h1 className="text-black">Loading...</h1>); 
+    return (<MainLoader/>); 
 
   }else if (pageData.content=== 'Page not Found') { 
     return (<h1 className="text-black">Page not Found</h1>); 
@@ -82,10 +77,10 @@ export default function CommonPageTemplate( { params}: PageProps ) {
     sectionContect = parsedData?.sectionContect;
   }
 
-  let section1 = null;
-  if (parsedData?.section2?.status) {
+/*   let section1 = null;
+  if (parsedData?.section1?.status) {
     section1 = parsedData?.section1;
-  }
+  } */
   let section2 = null;
   if (parsedData?.section2?.status) {
     section2 = parsedData?.section2;

@@ -3,7 +3,7 @@ import nodemailer from "nodemailer"
 
 export async function POST(req: NextRequest) {
     try {
-        const { subject, message} = await req.json();
+        const {  message} = await req.json();
 
         const transporter = nodemailer.createTransport({
             host: process.env.SMTP_HOST,
@@ -25,8 +25,8 @@ export async function POST(req: NextRequest) {
         });
 
         return NextResponse.json({ message: 'Email sent successfully', info });
-    } catch (error: any) {
+    } catch (error: unknown) {
         console.error('Error sending email:', error);
-        return NextResponse.json({ message: 'Failed to send email', error: error.message }, { status: 500 });
+      //  return NextResponse.json({ message: 'Failed to send email', error: error.message }, { status: 500 });
     }
 }

@@ -1,10 +1,10 @@
 import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { RootState } from '../store'; // Adjust the path as needed
-
+const baseUrl = process.env.NEXT_PUBLIC_PAGE_API; // Load from .env
 // Define the API call
 export const fetchData = createAsyncThunk('data/fetchData', async (pageSlug: string) => {
-  const response = await fetch(`http://localhost:8080/pages?slug=${pageSlug}`);
-  let data = await response.json();
+  const response = await fetch(`${baseUrl}/pages?slug=${pageSlug}`);
+  const data = await response.json();
 
   if (Array.isArray(data) && data.length > 0 && data[0]?.content) {
    
