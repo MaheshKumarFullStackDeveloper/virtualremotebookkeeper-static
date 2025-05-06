@@ -62,16 +62,19 @@ export default  function CommonPageTemplate( { url}: PageProps ) {
 
 
  
-
+  console.log("check content 11",pageData);
   if (pageData === null) { 
     return (<MainLoader/>); 
+    console.log("check content 12",pageData);
 
   }else if (pageData.content=== 'Page not Found') { 
+    console.log("check content 13",pageData);
     return (<h1 className="text-black">Page not Found</h1>); 
 
   }else{
+    console.log("check content 14",pageData);
   const parsedData = JSON.parse(pageData.content);
-  console.log("check content 2",parsedData);
+  console.log("check content 15",pageData);
   let sectionContect = null;
   if (parsedData?.sectionContect?.status) {
     sectionContect = parsedData?.sectionContect;
