@@ -64,6 +64,8 @@ function ContactForm() {
 
   return (<>
     <div className="bg-black py-12 px-16">
+ 
+<script type="text/javascript" id="hs-script-loader" async defer src="//js.hs-scripts.com/22315073.js"></script>
 
       <form
         className=" grid grid-cols-2 gap-2 space-y-4"
