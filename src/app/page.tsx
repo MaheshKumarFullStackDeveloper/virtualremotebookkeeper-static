@@ -107,13 +107,7 @@ export default function Home() {
         <>
           <div className="flex flex-col md:flex-row my-5  max-w-[1370px] w-full m-auto p-5">
             <div className="flex-1 p-4">
-              <Image
-                src={section2?.photo || "/default-image.png"}
-                width={625}
-                height={352}
-                alt="home-banner"
-                className="transition delay-150 duration-300 ease-in-out hover:-translate-y-1 hover:scale-110 hover:backdrop-blur-md"
-              ></Image>
+              
             </div>
             <div className="flex-1 bg-black text-white px-7 py-8 p-2 text-left border-[0.5px] ">
               <QuickContact />
