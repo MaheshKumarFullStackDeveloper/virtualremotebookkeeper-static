@@ -1,41 +1,61 @@
 // app/[page]/page.tsx
-import { fetchData } from "../store/slice/dataSlice";
-import { store } from "../store/store";
 import CommonPageTemplate from "./CommonPageTemplate";
-
-
 import type { Metadata } from "next";
 
+const baseUrl = process.env.NEXT_PUBLIC_PAGE_API; // Load from .env 
  
 type Props = {
   params: Promise<{ page: string }>
 }
  
-export async function generateMetadata(
-  { params }: Props
-): Promise<Metadata> {
-  // read route params
-  const newp = await params
- 
-  console.log("check id",newp.page);
-  if (newp.page !== "") {
 
-    await store.dispatch(fetchData(newp.page));
-      const state = store.getState().data;
-  
-      
+async function getPagedata(page: string) {
+  try {
+    const response = await fetch(`${baseUrl}/blogs?slug=${page}`);
+    const data = await response.json();
+
+    if (Array.isArray(data) && data.length > 0 && data[0]?.content) {
+      return data[0];
+    } else {
       return {
-        title: state.data?.meta.title ||process.env.SEO_TITLE,
-        description: state.data?.meta.description ||process.env.SEO_DES,
+        slug: page,
+        title: "",
+        category: "",
+        created: "",
+        meta: {
+          title: "",
+          description: "",
+        },
+        photo: "",
+        content: "Page not Found",
       };
-  
-    }else{
-      return {
-      title:process.env.SEO_TITLE,
-      description: process.env.SEO_DES
-      }
     }
+  } catch (error) {
+    console.error("Failed to fetch metadata:", error);
+    return undefined;
+  }
 }
+
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
+  // read route params
+  const newp = await params;
+
+  console.log("check id", newp.page);
+  if (newp.page !== "") {
+    const state = await getPagedata(newp.page);
+
+    return {
+      title: state.data?.meta.title || process.env.SEO_TITLE,
+      description: state.data?.meta.description || process.env.SEO_DES,
+    };
+  } else {
+    return {
+      title: process.env.SEO_TITLE,
+      description: process.env.SEO_DES,
+    };
+  }
+}
+
  
 export default async function Page(
   { params }: Props
