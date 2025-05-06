@@ -1,5 +1,5 @@
 "use client";
-import Image from "next/image";
+
 import { useSelector, useDispatch } from "react-redux";
 import {
   fetchData,
@@ -64,7 +64,7 @@ export default function Home() {
               {section3?.description}
             </div>
             <div className="flex-1 p-2   ">
-              
+              test
             </div>
           </div>
         </>
