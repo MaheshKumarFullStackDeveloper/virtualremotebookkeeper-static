@@ -31,7 +31,7 @@ async function getPagedata(page: string) {
 
     if (Array.isArray(data) && data.length > 0 && data[0]?.content) {
       data[0].content=JSON.stringify( data[0].content);
-      console.log("check content",data[0]);
+    
       return data[0];
     } else {
       return {
@@ -71,7 +71,7 @@ export default  function CommonPageTemplate( { url}: PageProps ) {
 
   }else{
   const parsedData = JSON.parse(pageData.content);
-
+  console.log("check content 2",parsedData);
   let sectionContect = null;
   if (parsedData?.sectionContect?.status) {
     sectionContect = parsedData?.sectionContect;
