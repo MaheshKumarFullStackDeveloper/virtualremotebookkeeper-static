@@ -64,13 +64,7 @@ export default function Home() {
               {section3?.description}
             </div>
             <div className="flex-1 p-2   ">
-              <Image
-                src={section3?.photo || "/default-image.png"}
-                width={623}
-                height={352}
-                alt="home-banner"
-                className="transition delay-150 duration-300 ease-in-out hover:-translate-y-1 hover:scale-110 hover:backdrop-blur-md"
-              ></Image>
+              
             </div>
           </div>
         </>
