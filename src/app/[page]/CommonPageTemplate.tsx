@@ -1,6 +1,4 @@
-"use client";
-import { useEffect, useState } from "react";
-import {  useRouter } from "next/navigation";
+import React from 'react'
 import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
@@ -31,7 +29,7 @@ async function getPagedata(page: string) {
 
     if (Array.isArray(data) && data.length > 0 && data[0]?.content) {
       data[0].content=JSON.stringify( data[0].content);
-    
+    //  console.log("check content",data[0]);
       return data[0];
     } else {
       return {
@@ -45,38 +43,23 @@ async function getPagedata(page: string) {
   }
 }
 
-export default  function CommonPageTemplate( { url}: PageProps ) {
-  const router = useRouter();
+export default async  function CommonPageTemplate( { url}: PageProps ) {
+
  console.log("check page",url)
 
-  const [pageData, setPageContent] = useState<{ slug: string; content: string } | null>(null);
-
-  useEffect(() => {
-    if (!url) {
-      router.push("/");
-      return;
-    }
-    getPagedata(url).then(setPageContent);
-    
-  console.log("check content 10",pageData);
-  }, [url, router]);
-
-
-
+ const pageData =await getPagedata(url);
  
-  console.log("check content 11",pageData);
+ 
+
   if (pageData === null) { 
     return (<MainLoader/>); 
-    console.log("check content 12",pageData);
 
   }else if (pageData.content=== 'Page not Found') { 
-    console.log("check content 13",pageData);
     return (<h1 className="text-black">Page not Found</h1>); 
 
   }else{
-    console.log("check content 14",pageData);
   const parsedData = JSON.parse(pageData.content);
-  console.log("check content 15",pageData);
+
   let sectionContect = null;
   if (parsedData?.sectionContect?.status) {
     sectionContect = parsedData?.sectionContect;
