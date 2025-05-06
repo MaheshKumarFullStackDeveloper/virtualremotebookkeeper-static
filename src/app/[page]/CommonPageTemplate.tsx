@@ -33,9 +33,9 @@ export default function CommonPageTemplate( { url}: PageProps ) {
   const router = useRouter();
 
   const  page  = url;
-  console.log("check page",url)
+  //console.log("check page",url)
   if(page===""){
-    console.log("redirect to home")
+  //  console.log("redirect to home")
     void  router.push('/')
   }
 
@@ -48,7 +48,7 @@ export default function CommonPageTemplate( { url}: PageProps ) {
   useEffect(() => {
 
     if(page===""){
-      console.log("redirect to home")
+    //  console.log("redirect to home")
       void  router.push('/')
     }
   
