@@ -30,7 +30,8 @@ async function getPagedata(page: string) {
     const data = await response.json();
 
     if (Array.isArray(data) && data.length > 0 && data[0]?.content) {
-      data[0].content=JSON.stringify( data[0].content)
+      data[0].content=JSON.stringify( data[0].content);
+      console.log("check content",data[0]);
       return data[0];
     } else {
       return {
