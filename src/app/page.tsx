@@ -1,6 +1,5 @@
 "use client";
 import Image from "next/image";
-import localFont from "next/font/local";
 import { useSelector, useDispatch } from "react-redux";
 import {
   fetchData,
