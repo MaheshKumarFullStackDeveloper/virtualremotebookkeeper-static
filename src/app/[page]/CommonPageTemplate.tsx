@@ -1,4 +1,6 @@
 "use client";
+import { useEffect, useState } from "react";
+import {  useRouter } from "next/navigation";
 import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
@@ -6,16 +8,7 @@ import QuickContact from "../components/QuickContact";
 import { AccordionFaq } from "../components/AccordionFaq";
 import ContactForm from "../components/ContactForm";
 import LatestBlogArticle from "../components/LatestBlogArticle";
-import { useSelector, useDispatch } from "react-redux";
-import {
-  fetchData,
-  selectData,
-  selectStatus,
-} from "../store/slice/dataSlice";
-import { AppDispatch } from "../store/store";
-import { useEffect } from "react";
 import { ArrowRightIcon } from "lucide-react";
-import { usePathname, useRouter } from "next/navigation";
 import MainLoader from "@/lib/MainLoader";
 
 interface Slide {
@@ -29,40 +22,46 @@ interface PageProps {
   url :string;
 }
 
-export default function CommonPageTemplate( { url}: PageProps ) {
-  const router = useRouter();
+ 
+const baseUrl = process.env.NEXT_PUBLIC_PAGE_API; // Load from .env 
+async function getPagedata(page: string) {
+  try {
+    const response = await fetch(`${baseUrl}/pages?slug=${page}`);
+    const data = await response.json();
 
-  const  page  = url;
-  //console.log("check page",url)
-  if(page===""){
-  //  console.log("redirect to home")
-    void  router.push('/')
+    if (Array.isArray(data) && data.length > 0 && data[0]?.content) {
+      data[0].content=JSON.stringify( data[0].content)
+      return data[0];
+    } else {
+      return {
+        slug: page,
+        content: "Page not Found",
+      };
+    }
+  } catch (error) {
+    console.error("Failed to fetch metadata:", error);
+    return undefined;
   }
+}
 
-  const dispatch = useDispatch<AppDispatch>();
-  const pageData = useSelector(selectData);
-  const status = useSelector(selectStatus);
-  const pathname = usePathname();
- 
- 
+export default  function CommonPageTemplate( { url}: PageProps ) {
+  const router = useRouter();
+ console.log("check page",url)
+
+  const [pageData, setPageContent] = useState<{ slug: string; content: string } | null>(null);
+
   useEffect(() => {
-
-    if(page===""){
-    //  console.log("redirect to home")
-      void  router.push('/')
+    if (!url) {
+      router.push("/");
+      return;
     }
-  
-    console.log("test 1 ",page)
-    if (pageData === null ||  pageData?.slug !==page ) {
-      console.log("test 2",page)
-      if (status === "idle" ) {
-        console.log("test 3 ",page)
-        dispatch(fetchData(page));
-      }
-    }
-  }, [dispatch, status, pageData, page,pathname]); 
+    getPagedata(url).then(setPageContent);
+  }, [url, router]);
 
-  
+
+
+ 
+
   if (pageData === null) { 
     return (<MainLoader/>); 
 
@@ -70,7 +69,7 @@ export default function CommonPageTemplate( { url}: PageProps ) {
     return (<h1 className="text-black">Page not Found</h1>); 
 
   }else{
-  const parsedData = JSON.parse(pageData?.content);
+  const parsedData = JSON.parse(pageData.content);
 
   let sectionContect = null;
   if (parsedData?.sectionContect?.status) {

@@ -85,25 +85,25 @@ const initialState: dataState = {
     {name:"blogs",url: 'blogs'}
   ],
     headerMenu: [
-    {name:"QuickBooks Bookkeeping",url: '/quickbooks-bookkeeping-services',subMenu:null},
-    {name:"Zoho Bookkeeping",url:'/zoho-bookkeeping',subMenu:null},
-    {name:"Xero Bookkeeping Services",url: '/xero-bookkeeping-services',subMenu:null},
-    {name:"Accounting Services",url: '/accounting-services',subMenu:[
-      {name:"Accountant for doctor",url: '/accountant-for-doctors'},
-      {name:"Accountant for therapist",url: '/accountant-for-therapist'},
-      {url:"/accountant-for-medical-practitioners",name: 'Accountant for medical practitioners'},
-      {url:"/accountant-for-psychotherapists",name: 'Accountant for psychotherapists'},
-      {url:"/accountant-for-counsellors",name: 'ccountant for counsellors'},
-      {url:"/accountant-for-physicians",name: 'Accountant for Physicians'}
+    {name:"QuickBooks Bookkeeping",url: 'quickbooks-bookkeeping-services',subMenu:null},
+    {name:"Zoho Bookkeeping",url:'zoho-bookkeeping',subMenu:null},
+    {name:"Xero Bookkeeping Services",url: 'xero-bookkeeping-services',subMenu:null},
+    {name:"Accounting Services",url: 'accounting-services',subMenu:[
+      {name:"Accountant for doctor",url: 'accountant-for-doctors'},
+      {name:"Accountant for therapist",url: 'accountant-for-therapist'},
+      {url:"accountant-for-medical-practitioners",name: 'Accountant for medical practitioners'},
+      {url:"accountant-for-psychotherapists",name: 'Accountant for psychotherapists'},
+      {url:"accountant-for-counsellors",name: 'ccountant for counsellors'},
+      {url:"accountant-for-physicians",name: 'Accountant for Physicians'}
    
      ]},
-    {name:"Professionals Bookkeeping",url: '/professionals-bookkeeping-services',subMenu:[
-      {name:"bookkeeping services for Doctor",url: '/bookkeeping-for-doctors'},
-      {name:"bookkeeping services for Therapist",url: '/bookkeeping-for-therapist'},
-      {name:"bookkeeping for Medical Practitioners",url: '/bookkeeping-for-medical-practitioners'},
-      {name:"bookkeeping for Psychotherapists",url: '/bookkeeping-for-psychotherapists'},
-      {name:"bookkeeping for Counsellors",url: '/bookkeeping-for-counsellors'},
-      {name:"bookkeeping for Physicians",url: '/bookkeeping-for-physicians'}
+    {name:"Professionals Bookkeeping",url: 'professionals-bookkeeping-services',subMenu:[
+      {name:"bookkeeping services for Doctor",url: 'bookkeeping-for-doctors'},
+      {name:"bookkeeping services for Therapist",url: 'bookkeeping-for-therapist'},
+      {name:"bookkeeping for Medical Practitioners",url: 'bookkeeping-for-medical-practitioners'},
+      {name:"bookkeeping for Psychotherapists",url: 'bookkeeping-for-psychotherapists'},
+      {name:"bookkeeping for Counsellors",url: 'bookkeeping-for-counsellors'},
+      {name:"bookkeeping for Physicians",url: 'bookkeeping-for-physicians'}
 
      ]}
    ],
