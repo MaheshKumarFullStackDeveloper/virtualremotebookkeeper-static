@@ -8,7 +8,7 @@ import { usePathname } from 'next/navigation';
 import Link from 'next/link';
 import { useSelector } from "react-redux";
 import {selectHeaderMenu} from ".././store/slice/dataSlice";
-
+const homeUrl = process.env.NEXT_PUBLIC_BASE_PATH; // Load from .env
 interface NavigationMenuMainProps{
     device: string;
 }
@@ -37,7 +37,7 @@ const NavigationMenuMain  : React.FC<NavigationMenuMainProps>=  ({device}) => {
 				 {item.subMenu === null ? (<>
 					<NavigationMenu.Link
 						className={`NavigationMenuLink ${pathname === item.url  ? "active" : ""}`}		
-						href={item.url || '#'}
+						href={`${homeUrl}${item.url}` || '#'}
 					>{item.name}</NavigationMenu.Link>
 				 </>) :(<>
 						
@@ -48,13 +48,13 @@ const NavigationMenuMain  : React.FC<NavigationMenuMainProps>=  ({device}) => {
 															: ""
 														}`}>
 						<Link style={{marginTop:'-3px'}}
-							href={item.url || '#'}
+							href={`${homeUrl}${item.url}` || '#'}
 						>{item.name}</Link> <CaretDownIcon className="CaretDown" aria-hidden />
 						</NavigationMenu.Trigger>
 						<NavigationMenu.Content className="NavigationMenuContent">
 							<ul className="List one">
 							{item.subMenu && item.subMenu.map((subitem: subMenus, index: number) => (
-								<ListItem key={index} href={subitem.url || '#'} title={subitem.name || "?"}></ListItem>
+								<ListItem key={index} href={`${homeUrl}${subitem.url}` || '#'} title={subitem.name || "?"}></ListItem>
 							 ))}
 								
 								

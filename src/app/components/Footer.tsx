@@ -2,7 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import React from "react";
 import { store } from "../store/store";
-
+const homeUrl = process.env.NEXT_PUBLIC_BASE_PATH; // Load from .env
 interface footerMenus {
   name: string;
   url: string;
@@ -49,7 +49,7 @@ function Footer() {
                 {footerMenu && footerMenu.map((item: footerMenus, index: number) => (
                   <li key={index}>
 
-                  <Link href={item.url || '#'}
+                  <Link href={`${homeUrl}${item.url}`}
                     className="block px-[15px] py-2 font-medium text-white uppercase text-[0.875rem] tracking-[0.188rem] hover:text-[#2bbdcc] transform transition duration-300" >{item.name} </Link>
                 </li>
 ))}
