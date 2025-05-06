@@ -5,7 +5,6 @@ import Link from "next/link";
 import QuickContact from "./components/QuickContact";
 import { AccordionFaq } from "./components/AccordionFaq";
 import ContactForm from "./components/ContactForm";
-import LatestBlogArticle from "./components/LatestBlogArticle";
 import { useSelector, useDispatch } from "react-redux";
 import {
   fetchData,
