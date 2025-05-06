@@ -15,7 +15,7 @@ import {
 import { AppDispatch } from "../store/store";
 import { useEffect } from "react";
 import { ArrowRightIcon } from "lucide-react";
-import { useRouter } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import MainLoader from "@/lib/MainLoader";
 
 interface Slide {
@@ -42,7 +42,7 @@ export default function CommonPageTemplate( { url}: PageProps ) {
   const dispatch = useDispatch<AppDispatch>();
   const pageData = useSelector(selectData);
   const status = useSelector(selectStatus);
-
+  const pathname = usePathname();
  
  
   useEffect(() => {
@@ -60,7 +60,7 @@ export default function CommonPageTemplate( { url}: PageProps ) {
         dispatch(fetchData(page));
       }
     }
-  }, [dispatch, status, pageData, page]); 
+  }, [dispatch, status, pageData, page,pathname]); 
 
   
   if (pageData === null) { 
