@@ -9,7 +9,7 @@ import { Roboto } from 'next/font/google';
 import { DM_Sans } from 'next/font/google';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-
+import Head from "next/head";
 
 const dmSans = DM_Sans({
   weight: ['400', '700'], // Specify font weights
@@ -42,6 +42,7 @@ export const metadata: Metadata = {
   description: process.env.SEO_DES,
 };
 
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -51,6 +52,16 @@ export default function RootLayout({
     <Suspense fallback={<MainLoader/>}>
 
     <html lang="en" suppressHydrationWarning>
+    <Head>
+        <script
+          type="text/javascript"
+          id="hs-script-loader"
+          async
+          defer
+          src="//js.hs-scripts.com/22315073.js"
+        ></script>
+      </Head>
+
       <body
         className={`${poppins.className} ${roboto.className} ${dmSans.className}`}
       >
