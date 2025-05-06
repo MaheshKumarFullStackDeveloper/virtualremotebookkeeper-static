@@ -345,8 +345,6 @@ export default function Home() {
         </>
       )}
 
-      <LatestBlogArticle />
-
       {section10 !== null && section10.status === "true" && (
         <>
           <div className="my-5 md:my-8 lg:my-11 max-w-[1370px] w-full m-auto p-5">
