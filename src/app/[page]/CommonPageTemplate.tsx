@@ -57,6 +57,8 @@ export default  function CommonPageTemplate( { url}: PageProps ) {
       return;
     }
     getPagedata(url).then(setPageContent);
+    
+  console.log("check content 10",pageData);
   }, [url, router]);
 
 
