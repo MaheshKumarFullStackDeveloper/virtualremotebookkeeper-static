@@ -77,10 +77,10 @@ function LatestBlogArticle() {
         
        </>
       ) : (
-        <>not fond</>
+        <><h3>Not Fond</h3></>
       )}
       
-      <Link className="my-20 mt-16 mx-auto float-none" href="/blog"> <Button  size="lg" variant="default" className="bg-[#DAA520] hover:bg-[#DAA520] cursor-alias transition delay-150 duration-300 ease-in-out hover:-translate-y-1 hover:scale-110  text-white  px-20 py-1 text-[16px]" >View More  <ArrowRightIcon className="h-5 w-5" />
+      <Link className="my-20 mt-16 mx-auto float-none" href="/blogs"> <Button  size="lg" variant="default" className="bg-[#DAA520] hover:bg-[#DAA520] cursor-alias transition delay-150 duration-300 ease-in-out hover:-translate-y-1 hover:scale-110  text-white  px-20 py-1 text-[16px]" >View More  <ArrowRightIcon className="h-5 w-5" />
       </Button></Link>
       </div>
   </>);

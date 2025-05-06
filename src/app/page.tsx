@@ -141,7 +141,7 @@ export default async function Home() {
               always accurate and up to date.
             </p>
             <p className="mt-[30px]">
-              <Link href="/">
+              <Link href="/contact-us">
                 <Button
                   size="default"
                   variant="default"
