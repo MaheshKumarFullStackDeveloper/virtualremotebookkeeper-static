@@ -2,7 +2,6 @@
 import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
-import QuickContact from "./components/QuickContact";
 import { AccordionFaq } from "./components/AccordionFaq";
 import ContactForm from "./components/ContactForm";
 import { useSelector, useDispatch } from "react-redux";
@@ -109,7 +108,7 @@ export default function Home() {
               
             </div>
             <div className="flex-1 bg-black text-white px-7 py-8 p-2 text-left border-[0.5px] ">
-              <QuickContact />
+            
             </div>
           </div>
         </>
@@ -125,13 +124,7 @@ export default function Home() {
               {section3?.description}
             </div>
             <div className="flex-1 p-2   ">
-              <Image
-                src={section3?.photo || "/default-image.png"}
-                width={623}
-                height={352}
-                alt="home-banner"
-                className="transition delay-150 duration-300 ease-in-out hover:-translate-y-1 hover:scale-110 hover:backdrop-blur-md"
-              ></Image>
+         
             </div>
           </div>
         </>
