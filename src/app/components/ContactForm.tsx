@@ -1,10 +1,11 @@
-"use clent";
-import { Button } from "@/components/ui/button";
+"use client";
+
+import React, { useState } from "react";
 import { Input } from "@/components/ui/input";
 import { Loader2 } from "lucide-react";
-import React, { useState } from "react";
 import { useForm, SubmitHandler } from "react-hook-form";
 import { toast, Bounce } from "react-toastify";
+import { Button } from "@/components/ui/button";
 
 function ContactForm() {
   const [contactFormLoading, setcontactFormLoading] = useState(false);

@@ -18,7 +18,7 @@ interface Post {
   
   interface PaginatedResponse {
     data: Post[];
-  }
+  } 
 
   const fetchPosts = async (category?: string): Promise<PaginatedResponse> => {
     const response = await axios.get<Post[]>(`${baseUrl}/blogs`, {

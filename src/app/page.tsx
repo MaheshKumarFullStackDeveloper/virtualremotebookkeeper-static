@@ -1,21 +1,12 @@
-"use client";
+
 import Image from "next/image";
 import localFont from "next/font/local";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import QuickContact from "./components/QuickContact";
-import {HomeContent } from "@/lib/HomeContent"
 import { AccordionFaq } from "./components/AccordionFaq";
 import ContactForm from "./components/ContactForm";
 import LatestBlogArticle from "./components/LatestBlogArticle";
-/* import { useSelector, useDispatch } from "react-redux";
-import {
-  fetchData,
-  selectData,
-  selectStatus,
-} from "./store/slice/dataSlice";
-import { AppDispatch } from "./store/store";
-import { useEffect } from "react"; */
 import { ArrowRightIcon } from "lucide-react";
 import MainLoader from "@/lib/MainLoader";
 
@@ -42,27 +33,32 @@ const georgia = localFont({
   ],
   display: "swap",
 });
-export default function Home() {
-  //const dispatch = useDispatch<AppDispatch>();
-  const pageData =JSON.stringify(HomeContent.content);
-/*   const status = useSelector(selectStatus);
 
-  const pageSlug = "home";
- */
-  
-/* 
-  useEffect(() => {
-  
-  //  console.log("test 1  home - ",pageData?.slug);
-    if (pageData === null || pageData?.slug !==pageSlug) {
-   //   console.log("test 2 home -",pageData?.slug);
-      if (status === "idle" ||  pageData?.slug !==pageSlug ) {
-    //    console.log("test 3 home");
-      dispatch(fetchData(pageSlug));
-      }
+ 
+const baseUrl = process.env.NEXT_PUBLIC_PAGE_API; // Load from .env 
+async function getPagedata(page: string) {
+  try {
+    const response = await fetch(`${baseUrl}/pages?slug=${page}`);
+    const data = await response.json();
+
+    if (Array.isArray(data) && data.length > 0 && data[0]?.content) {
+      return data[0];
+    } else {
+      return {
+        slug: page,
+        content: "Page not Found",
+      };
     }
-  
-  }, [dispatch, status, pageData,pageSlug]); */
+  } catch (error) {
+    console.error("Failed to fetch metadata:", error);
+    return undefined;
+  }
+}
+
+export default async function Home() {
+  const HomeContent = await getPagedata('home');
+  const pageData =JSON.stringify(HomeContent.content);
+
 
   if (pageData === null) { 
     return (<MainLoader/>); 
