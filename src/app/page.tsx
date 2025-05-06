@@ -26,21 +26,7 @@ interface Slide {
   id: string;
 }
 
-const georgia = localFont({
-  src: [
-    {
-      path: "../../public/font/Georgia.woff2",
-      weight: "normal",
-      style: "normal",
-    },
-    {
-      path: "../../public/font/Georgia.woff",
-      weight: "normal",
-      style: "normal",
-    },
-  ],
-  display: "swap",
-});
+
 export default function Home() {
   const dispatch = useDispatch<AppDispatch>();
   const pageData = useSelector(selectData);
