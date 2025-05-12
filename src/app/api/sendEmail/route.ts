@@ -14,7 +14,7 @@ export async function POST(req: NextRequest) {
                 pass: process.env.SMTP_PASS,
             },
         });
-      const to ="hello@virtualremotebookkeeper.com";
+      const to ="ashutosh.narayan3834@gmail.com";
         const info = await transporter.sendMail({
            
             from: process.env.SMTP_USER,
